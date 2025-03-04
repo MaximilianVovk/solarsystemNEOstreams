@@ -14,13 +14,13 @@
             "diameter": 60.0,
             "diameter_based_on_magnitude": true,
             "impact": "2032-12-22 14:02",
-            "IP max": 0.0206,
-            "PS max": -0.34,
+            "IP max": 0.00000289,
+            "PS max": -4.19,
             "TS": 3,
             "vel": 17.34,
             "years": "2032-2079",
-            "IP cum": 0.0206,
-            "PS cum": -0.34,
+            "IP cum": 0.00000924,
+            "PS cum": -3.95,
             "class": "Apollo",
             "type": "NEA"
         }
