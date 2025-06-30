@@ -40,7 +40,9 @@ const TEXT_RENDER_SF = 2.0; // size factor to scale the text by
 
 // constants for haze size for the sun and for the radial gradient plane of the sporadics
 const HAZE_SIZE = 200 * SUN_RADIUS * BODY_RENDER_SF;
-const PLANE_WIDTH = 5.204 * 2;
+// const PLANE_WIDTH = 5.204 * 2;
+const PLANE_WIDTH = 100.204 * 2;
+
 
 const TIMESPEEDS = [-365, -30, -7, -1, -3600 / 86400, -60 / 86400, -1 / 86400, 1 / 86400, 60 / 86400, 3600 / 86400, 1, 7, 30, 365]
 
@@ -717,40 +719,40 @@ async function initializeShowers() {
     }
 }
 
-// // Add radial gradient plane
-// function createRadialGradientPlane(width, height) {
-//     const geometry = new THREE.PlaneGeometry(width, height, 1, 1);
-//     const material = new THREE.ShaderMaterial({
-//         vertexShader: `
-//             varying vec2 vUv;
-//             void main() {
-//                 vUv = uv;
-//                 gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-//             }
-//         `,
-//         fragmentShader: `
-//             varying vec2 vUv;
-//             void main() {
-//                 float distanceFromCenter = length(vUv - vec2(0.5, 0.5));
-//                 float alpha = (1.0 - distanceFromCenter * 2.0)*0.5;
-//                 alpha = clamp(alpha, 0.0, 1.0);
-//                 if (alpha < 0.01) {
-//                     discard;
-//                 }
-//                 gl_FragColor = vec4(0.0, 1.0, 0.0, alpha);
-//             }
-//         `,
-//         transparent: true,
-//         side: THREE.DoubleSide,
-//         depthWrite: false,
-//         depthTest: false,
-//     });
+// Add radial gradient plane
+function createRadialGradientPlane(width, height) {
+    const geometry = new THREE.PlaneGeometry(width, height, 1, 1);
+    const material = new THREE.ShaderMaterial({
+        vertexShader: `
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `,
+        fragmentShader: `
+            varying vec2 vUv;
+            void main() {
+                float distanceFromCenter = length(vUv - vec2(0.5, 0.5));
+                float alpha = (1.0 - distanceFromCenter * 2.0)*0.5;
+                alpha = clamp(alpha, 0.0, 1.0);
+                if (alpha < 0.01) {
+                    discard;
+                }
+                gl_FragColor = vec4(0.0, 1.0, 0.0, alpha);
+            }
+        `,
+        transparent: true,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+        depthTest: false,
+    });
 
-//     const plane = new THREE.Mesh(geometry, material);
-//     plane.rotation.x = Math.PI / 2;
-//     plane.renderOrder = 0;
-//     return plane;
-// }
+    const plane = new THREE.Mesh(geometry, material);
+    plane.rotation.x = Math.PI / 2;
+    plane.renderOrder = 0;
+    return plane;
+}
 
 function createRadialGradientPlane_plane(width, height) {
     // 1) Create a plane large enough to cover the region
@@ -818,7 +820,7 @@ function createRadialGradientPlane_plane(width, height) {
 }
   
 
-function createRadialGradientPlane(width, height) {
+function createRadialGradientPlane_3D(width, height) {
   // 1) The radius of the sphere is half the plane’s width
   const radius = width * 0.5;
 
@@ -1042,7 +1044,7 @@ function updateBillboard(plane, camera) {
     plane.lookAt(camera.position);
 }
 
-const radialGradientPlane = createRadialGradientPlane(PLANE_WIDTH, PLANE_WIDTH);
+const radialGradientPlane = createRadialGradientPlane_plane(PLANE_WIDTH, PLANE_WIDTH);
 
 
 // Data
