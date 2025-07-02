@@ -354,8 +354,8 @@ document.addEventListener('pointerup', (event) => {
                 document.getElementById('info-diameter').textContent = `Diameter: 1391000 km`;
                 document.getElementById('info-temp').textContent = `Surface temperature: 5499\u00B0C`;
                 document.getElementById('info-grav').textContent = `Surface gravity: 273.95 m/s\u00B2`;
-                document.getElementById('info-mass').textContent = `Mass: 333000 M\u{1F728}`;
-                // document.getElementById('info-mass').textContent = `Mass: 1.988 \u00D7 10\u00B3\u2070 M\u{1F728}`;
+                document.getElementById('info-mass').textContent = `Mass: 333000 M\u2295`;
+                // document.getElementById('info-mass').textContent = `Mass: 1.988 \u00D7 10\u00B3\u2070 M\u{1F728}`; // \u{1F728}
                 document.getElementById('info-obl').textContent = `Obliquity (axial tilt): 7.25\u00B0`;
                 document.getElementById('info-rotper').textContent = `Rotation period: 25.05 days`;
                 
